@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import '../styles/LoginForm.css';
 
+// API URL - same domain in production, localhost in dev
+const API_BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5000' : '');
+
 function LoginForm({ onLogin, onBack }) {
   const [formData, setFormData] = useState({
     username: '',
@@ -21,7 +24,7 @@ function LoginForm({ onLogin, onBack }) {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

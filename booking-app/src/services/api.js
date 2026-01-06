@@ -1,6 +1,8 @@
 // API Service for BookApp
 
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+// In production, API is on same domain (Vercel serverless)
+// In development, use local backend server
+const API_BASE_URL = import.meta.env.VITE_API_URL || (import.meta.env.DEV ? 'http://localhost:5000' : '');
 
 class ApiError extends Error {
   constructor(message, status, errors = []) {
@@ -105,7 +107,7 @@ export async function cancelBooking(reference, authToken) {
 // Get course availability
 export async function getCourseAvailability(courseId) {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/courses/${courseId}/availability`);
+    const response = await fetch(`${API_BASE_URL}/api/courses/availability?courseId=${courseId}`);
     return await handleResponse(response);
   } catch (error) {
     if (error instanceof ApiError) throw error;

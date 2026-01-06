@@ -1,0 +1,328 @@
+/* BookingSummary.css */
+
+.booking-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.summary-section {
+  background: var(--bg-secondary);
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+
+.summary-section-title {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.summary-section-title svg {
+  width: 20px;
+  height: 20px;
+  color: var(--primary-color);
+}
+
+.summary-card {
+  background: var(--card-bg);
+  border-radius: 12px;
+  padding: 1rem;
+  border: 1px solid var(--border-color);
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.summary-row:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.summary-row:first-child {
+  padding-top: 0;
+}
+
+.summary-row .label {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.summary-row .value {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-align: right;
+}
+
+/* Dates Grid */
+.dates-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.5rem;
+}
+
+.date-chip {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+}
+
+.date-number {
+  width: 22px;
+  height: 22px;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.date-value {
+  font-size: 0.85rem;
+  color: var(--text-primary);
+}
+
+/* Participants Summary */
+.participants-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.participant-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+}
+
+.participant-avatar {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.participant-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.participant-name {
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.participant-age {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.participant-type {
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+}
+
+.participant-type.parent {
+  background: rgba(249, 115, 22, 0.1);
+  color: var(--primary-color);
+}
+
+.participant-type.child {
+  background: rgba(34, 197, 94, 0.1);
+  color: #16a34a;
+}
+
+/* Price Section */
+.price-section {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: white;
+}
+
+.price-section .summary-section-title {
+  color: white;
+}
+
+.price-section .summary-section-title svg {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.price-breakdown {
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.price-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.price-includes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.price-includes span {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.price-includes svg {
+  width: 14px;
+  height: 14px;
+}
+
+.price-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-label {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.total-amount {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* Payment Method Display */
+.payment-method-display {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: var(--card-bg);
+  border: 2px solid var(--success-color);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+}
+
+.payment-method-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.payment-method-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.payment-method-icon.google-pay {
+  background: linear-gradient(135deg, #4285f4 0%, #34a853 50%, #fbbc05 75%, #ea4335 100%);
+  color: white;
+}
+
+.payment-method-icon.apple-pay {
+  background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+  color: white;
+}
+
+.payment-method-icon.paypal {
+  background: linear-gradient(135deg, #003087 0%, #009cde 100%);
+  color: white;
+}
+
+.payment-method-icon.credit-card {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--accent-rose) 100%);
+  color: white;
+}
+
+.payment-method-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+}
+
+.payment-method-name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.payment-card-number {
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 1px;
+  background: var(--bg-secondary);
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--radius-sm);
+  margin: 0.25rem 0;
+}
+
+.payment-method-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--success-color);
+}
+
+.payment-method-status svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .summary-section {
+    padding: 1rem;
+  }
+
+  .dates-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .total-amount {
+    font-size: 1.5rem;
+  }
+}

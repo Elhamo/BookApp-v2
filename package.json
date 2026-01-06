@@ -1,0 +1,19 @@
+{
+  "name": "bookapp",
+  "version": "1.0.0",
+  "description": "BookApp - Booking System with Website, React Frontend, and Express Backend",
+  "private": true,
+  "workspaces": [
+    "website",
+    "booking-app",
+    "backend"
+  ],
+  "scripts": {
+    "dev:website": "npm run dev --workspace=website",
+    "dev:booking": "npm run dev --workspace=booking-app",
+    "dev:backend": "npm run dev --workspace=backend",
+    "build:website": "npm run build --workspace=website",
+    "build:booking": "npm run build --workspace=booking-app",
+    "dev:all": "npm-run-all --parallel dev:website dev:booking dev:backend"
+  }
+}

@@ -69,8 +69,8 @@ export async function login(username, password) {
 }
 
 // Auth middleware helper
-export function getAuthUser(request) {
-  const authHeader = request.headers.get('authorization');
+export function getAuthUser(req) {
+  const authHeader = req.headers.authorization || req.headers['Authorization'];
 
   if (!authHeader || !authHeader.startsWith('Bearer ')) {
     return null;

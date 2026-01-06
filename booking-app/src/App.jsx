@@ -72,8 +72,7 @@ function App() {
       <header className="app-header">
         <div className="header-content">
           <a href="/" className="logo" onClick={(e) => { e.preventDefault(); setCurrentView('booking'); }}>
-            <img src="/logo.jpeg" alt="BookApp Logo" className="logo-img" />
-            <span className="logo-text">Book<span>App</span></span>
+            <img src="/logo.png" alt="BookApp Logo" className="logo-img" />
           </a>
           <div className="header-actions">
             <span className="header-badge">Demo</span>

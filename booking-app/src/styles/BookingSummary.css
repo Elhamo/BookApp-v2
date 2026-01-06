@@ -1,9 +1,19 @@
 /* BookingSummary.css */
 
 .booking-summary {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
+}
+
+/* Price section spans full width */
+.booking-summary .price-section {
+  grid-column: 1 / -1;
+}
+
+/* Payment method spans full width */
+.booking-summary .summary-section:has(.payment-method-display) {
+  grid-column: 1 / -1;
 }
 
 .summary-section {
@@ -313,6 +323,17 @@
 }
 
 /* Responsive */
+@media (max-width: 900px) {
+  .booking-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .booking-summary .price-section,
+  .booking-summary .summary-section:has(.payment-method-display) {
+    grid-column: 1;
+  }
+}
+
 @media (max-width: 640px) {
   .summary-section {
     padding: 1rem;

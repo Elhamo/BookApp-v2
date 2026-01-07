@@ -220,7 +220,7 @@ export const praxisConfig = {
     }
   ],
 
-  // Terminart (Vor-Ort oder Video)
+  // Terminart (nur Vor-Ort für Zahnarzt)
   consultationType: [
     {
       id: 'vor-ort',
@@ -228,30 +228,13 @@ export const praxisConfig = {
       description: 'Persönlicher Besuch in der Praxis',
       icon: 'building',
       default: true
-    },
-    {
-      id: 'video',
-      name: 'Video-Sprechstunde',
-      description: 'Online-Termin per Videokonferenz',
-      icon: 'video',
-      note: 'Nicht für alle Anliegen verfügbar'
-    },
-    {
-      id: 'telefon',
-      name: 'Telefontermin',
-      description: 'Telefonische Beratung',
-      icon: 'phone',
-      note: 'Nur für Befundbesprechungen und Rezepte'
     }
   ],
 
-  // Sprachen der Ärzte
+  // Sprachen des Arztes
   languages: [
-    { id: 'de', name: 'Deutsch', flag: '🇩🇪', doctors: ['dr-weber', 'dr-mueller', 'dr-schmidt'] },
-    { id: 'en', name: 'English', flag: '🇬🇧', doctors: ['dr-weber', 'dr-schmidt'] },
-    { id: 'tr', name: 'Türkçe', flag: '🇹🇷', doctors: ['dr-mueller'] },
-    { id: 'sr', name: 'Srpski', flag: '🇷🇸', doctors: ['dr-schmidt'] },
-    { id: 'ar', name: 'العربية', flag: '🇸🇦', doctors: ['dr-weber'] }
+    { id: 'de', name: 'Deutsch', flag: '🇩🇪', doctors: ['dr-edler'] },
+    { id: 'en', name: 'English', flag: '🇬🇧', doctors: ['dr-edler'] }
   ],
 
   // Barrierefreiheit

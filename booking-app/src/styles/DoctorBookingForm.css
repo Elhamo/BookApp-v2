@@ -44,9 +44,9 @@
 }
 
 .step.active .step-number {
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-rose));
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
   color: white;
-  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.4);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
 }
 
 .step.completed .step-number {
@@ -110,9 +110,13 @@
   width: 24px;
   height: 24px;
   padding: 0.25rem;
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-rose));
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
   color: white;
   border-radius: var(--radius-sm);
+}
+
+.section-title.no-icon {
+  justify-content: center;
 }
 
 /* Consultation Types */

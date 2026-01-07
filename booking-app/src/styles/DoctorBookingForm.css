@@ -13,7 +13,7 @@
   justify-content: space-between;
   margin-bottom: 2.5rem;
   padding: 1.5rem;
-  background: var(--bg-secondary);
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
   border-radius: var(--radius-xl);
   overflow: hidden;
   max-width: 100%;
@@ -32,8 +32,8 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--border-color);
-  color: var(--text-muted);
+  background: rgba(255, 255, 255, 0.2);
+  color: rgba(255, 255, 255, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,9 +44,9 @@
 }
 
 .step.active .step-number {
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-  color: white;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+  background: white;
+  color: #3b82f6;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .step.completed .step-number {
@@ -61,25 +61,25 @@
 
 .step-title {
   font-weight: 600;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.9rem;
   white-space: nowrap;
 }
 
 .step.active .step-title,
 .step.completed .step-title {
-  color: var(--text-primary);
+  color: white;
 }
 
 .step-line {
   flex: 1;
   height: 2px;
-  background: var(--border-color);
+  background: rgba(255, 255, 255, 0.3);
   margin: 0 1rem;
 }
 
 .step.completed .step-line {
-  background: var(--success-color);
+  background: rgba(255, 255, 255, 0.8);
 }
 
 /* Step Content */
@@ -592,8 +592,8 @@
 }
 
 .time-slot.selected {
-  border-color: var(--primary-color);
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-rose));
+  border-color: #3b82f6;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
   color: white;
 }
 
@@ -900,7 +900,7 @@
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary-color), var(--accent-rose));
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
   border: none;
   color: white;
   margin-left: auto;
@@ -908,7 +908,7 @@
 
 .btn-primary:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.4);
 }
 
 .btn-primary:disabled {

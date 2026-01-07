@@ -31,6 +31,15 @@ export default function DoctorBookingForm() {
   const [bookingComplete, setBookingComplete] = useState(false);
   const [bookingReference, setBookingReference] = useState(null);
 
+  // Auto-select doctor if only one exists
+  useEffect(() => {
+    if (praxisConfig.doctors.length === 1 && !selectedDoctor) {
+      setSelectedDoctor(praxisConfig.doctors[0]);
+    }
+  }, []);
+
+  const singleDoctorMode = praxisConfig.doctors.length === 1;
+
   const steps = [
     { id: 1, title: 'Arzt & Terminart', icon: 'user' },
     { id: 2, title: 'Datum & Uhrzeit', icon: 'calendar' },
@@ -262,55 +271,94 @@ export default function DoctorBookingForm() {
               </div>
             </div>
 
-            {/* Doctor Selection */}
-            <div className="form-section">
-              <h3 className="section-title">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-                  <circle cx="12" cy="7" r="4"/>
-                </svg>
-                Wählen Sie Ihren Arzt / Ihre Ärztin
-              </h3>
-              <div className="doctors-grid">
-                {praxisConfig.doctors.map(doctor => (
-                  <div
-                    key={doctor.id}
-                    className={`doctor-card ${selectedDoctor?.id === doctor.id ? 'selected' : ''}`}
-                    onClick={() => setSelectedDoctor(doctor)}
-                    style={{ '--doctor-color': doctor.color }}
-                  >
-                    <div className="doctor-avatar">
-                      {doctor.name.split(' ').map(n => n[0]).join('')}
-                    </div>
-                    <div className="doctor-info">
-                      <h4>{doctor.name}</h4>
-                      <p className="doctor-title">{doctor.title}</p>
-                      <div className="doctor-languages">
-                        {praxisConfig.languages
-                          .filter(l => l.doctors.includes(doctor.id))
-                          .map(l => (
-                            <span key={l.id} className="language-flag" title={l.name}>{l.flag}</span>
-                          ))
-                        }
+            {/* Doctor Selection - only show if multiple doctors */}
+            {!singleDoctorMode ? (
+              <div className="form-section">
+                <h3 className="section-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                  </svg>
+                  Wählen Sie Ihren Arzt / Ihre Ärztin
+                </h3>
+                <div className="doctors-grid">
+                  {praxisConfig.doctors.map(doctor => (
+                    <div
+                      key={doctor.id}
+                      className={`doctor-card ${selectedDoctor?.id === doctor.id ? 'selected' : ''}`}
+                      onClick={() => setSelectedDoctor(doctor)}
+                      style={{ '--doctor-color': doctor.color }}
+                    >
+                      <div className="doctor-avatar">
+                        {doctor.name.split(' ').map(n => n[0]).join('')}
+                      </div>
+                      <div className="doctor-info">
+                        <h4>{doctor.name}</h4>
+                        <p className="doctor-title">{doctor.title}</p>
+                        <div className="doctor-languages">
+                          {praxisConfig.languages
+                            .filter(l => l.doctors.includes(doctor.id))
+                            .map(l => (
+                              <span key={l.id} className="language-flag" title={l.name}>{l.flag}</span>
+                            ))
+                          }
+                        </div>
+                      </div>
+                      <div className="doctor-days">
+                        {['Mo', 'Di', 'Mi', 'Do', 'Fr'].map((day, i) => {
+                          const fullDay = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'][i];
+                          return (
+                            <span
+                              key={day}
+                              className={`day ${doctor.availableDays.includes(fullDay) ? 'available' : ''}`}
+                            >
+                              {day}
+                            </span>
+                          );
+                        })}
                       </div>
                     </div>
-                    <div className="doctor-days">
-                      {['Mo', 'Di', 'Mi', 'Do', 'Fr'].map((day, i) => {
-                        const fullDay = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'][i];
-                        return (
-                          <span
-                            key={day}
-                            className={`day ${doctor.availableDays.includes(fullDay) ? 'available' : ''}`}
-                          >
-                            {day}
-                          </span>
-                        );
-                      })}
+                  ))}
+                </div>
+              </div>
+            ) : (
+              /* Single Doctor Info Card */
+              <div className="form-section single-doctor-info">
+                <h3 className="section-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+                    <circle cx="12" cy="7" r="4"/>
+                  </svg>
+                  Ihr Arzt / Ihre Ärztin
+                </h3>
+                <div className="doctor-info-card" style={{ '--doctor-color': selectedDoctor?.color }}>
+                  <div className="doctor-avatar large">
+                    {selectedDoctor?.name.split(' ').map(n => n[0]).join('')}
+                  </div>
+                  <div className="doctor-details">
+                    <h4>{selectedDoctor?.name}</h4>
+                    <p className="doctor-title">{selectedDoctor?.title}</p>
+                    <p className="doctor-specialization">{selectedDoctor?.specialization}</p>
+                    <div className="doctor-availability">
+                      <span className="availability-label">Verfügbar:</span>
+                      <div className="doctor-days">
+                        {['Mo', 'Di', 'Mi', 'Do', 'Fr'].map((day, i) => {
+                          const fullDay = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'][i];
+                          return (
+                            <span
+                              key={day}
+                              className={`day ${selectedDoctor?.availableDays.includes(fullDay) ? 'available' : ''}`}
+                            >
+                              {day}
+                            </span>
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
-                ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Appointment Type */}
             <div className="form-section">

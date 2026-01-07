@@ -9,34 +9,16 @@ export const praxisConfig = {
   phone: '+43 1 234 5678',
   email: 'ordination@praxis-weber.at',
 
-  // Ärzte in der Praxis
+  // Arzt der Klinik
   doctors: [
     {
       id: 'dr-weber',
       name: 'Dr. Maria Weber',
       title: 'Fachärztin für Allgemeinmedizin',
-      specialization: 'Allgemeinmedizin',
+      specialization: 'Allgemeinmedizin & Innere Medizin',
       image: null,
       availableDays: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'],
-      color: '#f97316' // Orange
-    },
-    {
-      id: 'dr-mueller',
-      name: 'Dr. Thomas Müller',
-      title: 'Facharzt für Innere Medizin',
-      specialization: 'Innere Medizin',
-      image: null,
-      availableDays: ['Montag', 'Mittwoch', 'Freitag'],
       color: '#3b82f6' // Blue
-    },
-    {
-      id: 'dr-schmidt',
-      name: 'Dr. Anna Schmidt',
-      title: 'Fachärztin für Allgemeinmedizin',
-      specialization: 'Allgemeinmedizin, Kindermedizin',
-      image: null,
-      availableDays: ['Dienstag', 'Donnerstag', 'Freitag'],
-      color: '#10b981' // Green
     }
   ],
 

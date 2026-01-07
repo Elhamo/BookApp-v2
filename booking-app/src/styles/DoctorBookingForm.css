@@ -32,8 +32,8 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.7);
+  background: white;
+  color: #93c5fd;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,9 +44,9 @@
 }
 
 .step.active .step-number {
-  background: #1d4ed8;
-  color: white;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  background: white;
+  color: #1d4ed8;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .step.completed .step-number {

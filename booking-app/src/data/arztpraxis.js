@@ -29,6 +29,7 @@ export const praxisConfig = {
       name: 'Bleaching',
       description: 'Professionelle Zahnaufhellung',
       duration: 60,
+      price: 350,
       icon: 'sparkle',
       color: '#f59e0b'
     },
@@ -37,6 +38,7 @@ export const praxisConfig = {
       name: 'Veneers',
       description: 'Keramikverblendschalen für perfekte Zähne',
       duration: 60,
+      price: 890,
       icon: 'smile',
       color: '#8b5cf6'
     },
@@ -45,6 +47,7 @@ export const praxisConfig = {
       name: 'Kieferorthopädie',
       description: 'Beratung & Behandlung von Zahnfehlstellungen',
       duration: 45,
+      price: 150,
       icon: 'align',
       color: '#3b82f6'
     },
@@ -53,6 +56,7 @@ export const praxisConfig = {
       name: 'Durchsichtige Zahnspange',
       description: 'Unsichtbare Aligner für diskrete Korrektur',
       duration: 30,
+      price: 2500,
       icon: 'invisible',
       color: '#06b6d4'
     },
@@ -61,6 +65,7 @@ export const praxisConfig = {
       name: 'Festsitzende Zahnspange',
       description: 'Klassische Brackets für effektive Korrektur',
       duration: 45,
+      price: 1800,
       icon: 'brackets',
       color: '#6366f1'
     },
@@ -69,6 +74,7 @@ export const praxisConfig = {
       name: 'Zahnerhaltung',
       description: 'Füllungen, Wurzelbehandlungen & mehr',
       duration: 45,
+      price: 180,
       icon: 'tooth',
       color: '#10b981'
     },
@@ -77,6 +83,7 @@ export const praxisConfig = {
       name: 'Mundhygiene',
       description: 'Professionelle Zahnreinigung',
       duration: 45,
+      price: 120,
       icon: 'clean',
       color: '#14b8a6'
     },
@@ -85,6 +92,7 @@ export const praxisConfig = {
       name: 'Inlays und Onlays',
       description: 'Hochwertige Einlagefüllungen',
       duration: 60,
+      price: 450,
       icon: 'inlay',
       color: '#f97316'
     },
@@ -93,6 +101,7 @@ export const praxisConfig = {
       name: 'Zahnersatz',
       description: 'Beratung & Anfertigung von Zahnersatz',
       duration: 45,
+      price: 600,
       icon: 'denture',
       color: '#ec4899'
     },
@@ -101,6 +110,7 @@ export const praxisConfig = {
       name: 'Zahnimplantate',
       description: 'Dauerhafte Zahnwurzel-Ersatz',
       duration: 60,
+      price: 1200,
       icon: 'implant',
       color: '#ef4444'
     },
@@ -109,6 +119,7 @@ export const praxisConfig = {
       name: 'Zahnprothesen',
       description: 'Teil- und Vollprothesen',
       duration: 45,
+      price: 800,
       icon: 'prothesis',
       color: '#a855f7'
     },
@@ -117,6 +128,7 @@ export const praxisConfig = {
       name: 'Zahnkronen und -brücken',
       description: 'Festsitzender Zahnersatz',
       duration: 60,
+      price: 650,
       icon: 'crown',
       color: '#eab308'
     }

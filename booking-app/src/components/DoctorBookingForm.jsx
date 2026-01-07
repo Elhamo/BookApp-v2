@@ -31,6 +31,13 @@ export default function DoctorBookingForm() {
   const [bookingComplete, setBookingComplete] = useState(false);
   const [bookingReference, setBookingReference] = useState(null);
   const [calendarMonth, setCalendarMonth] = useState(new Date());
+  const [paymentMethod, setPaymentMethod] = useState(null);
+  const [cardData, setCardData] = useState({
+    number: '',
+    name: '',
+    expiry: '',
+    cvv: ''
+  });
 
   // Auto-select doctor if only one exists
   useEffect(() => {
@@ -42,11 +49,23 @@ export default function DoctorBookingForm() {
   const singleDoctorMode = praxisConfig.doctors.length === 1;
 
   const steps = [
-    { id: 1, title: 'Arzt & Terminart', icon: 'user' },
-    { id: 2, title: 'Datum & Uhrzeit', icon: 'calendar' },
+    { id: 1, title: 'Terminart', icon: 'user' },
+    { id: 2, title: 'Datum & Zeit', icon: 'calendar' },
     { id: 3, title: 'Ihre Daten', icon: 'clipboard' },
-    { id: 4, title: 'Bestätigung', icon: 'check' }
+    { id: 4, title: 'Zahlung', icon: 'credit-card' },
+    { id: 5, title: 'Bestätigung', icon: 'check' }
   ];
+
+  // Calculate total price
+  const calculateTotal = () => {
+    if (!selectedAppointmentType) return 0;
+    let total = selectedAppointmentType.price;
+    // Add extra fee for first-time patients
+    if (patientData.patientStatus === 'neu') {
+      total += 15; // Anamnese-Gebühr
+    }
+    return total;
+  };
 
   // Calendar helper functions
   const getDaysInMonth = (date) => {
@@ -165,11 +184,32 @@ export default function DoctorBookingForm() {
   };
 
   const handleNext = () => {
-    if (step < 4) setStep(step + 1);
+    if (step < 5) setStep(step + 1);
   };
 
   const handleBack = () => {
     if (step > 1) setStep(step - 1);
+  };
+
+  // Format card number with spaces
+  const formatCardNumber = (value) => {
+    const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+    const matches = v.match(/\d{4,16}/g);
+    const match = (matches && matches[0]) || '';
+    const parts = [];
+    for (let i = 0, len = match.length; i < len; i += 4) {
+      parts.push(match.substring(i, i + 4));
+    }
+    return parts.length ? parts.join(' ') : value;
+  };
+
+  // Format expiry date
+  const formatExpiry = (value) => {
+    const v = value.replace(/\s+/g, '').replace(/[^0-9]/gi, '');
+    if (v.length >= 2) {
+      return v.substring(0, 2) + '/' + v.substring(2, 4);
+    }
+    return v;
   };
 
   const handleSubmit = async () => {
@@ -195,6 +235,15 @@ export default function DoctorBookingForm() {
         return patientData.firstName && patientData.lastName &&
                patientData.email && patientData.phone &&
                patientData.birthDate && patientData.insuranceType;
+      case 4:
+        if (!paymentMethod) return false;
+        if (paymentMethod === 'card') {
+          return cardData.number.replace(/\s/g, '').length >= 16 &&
+                 cardData.name.length >= 2 &&
+                 cardData.expiry.length >= 5 &&
+                 cardData.cvv.length >= 3;
+        }
+        return true; // Other payment methods just need to be selected
       default:
         return true;
     }
@@ -438,6 +487,7 @@ export default function DoctorBookingForm() {
                   >
                     <span className="type-name">{type.name}</span>
                     <span className="type-duration">ca. {type.duration} Min.</span>
+                    <span className="type-price">€ {type.price},-</span>
                   </div>
                 ))}
               </div>
@@ -793,9 +843,169 @@ export default function DoctorBookingForm() {
           </div>
         )}
 
-        {/* Step 4: Confirmation */}
+        {/* Step 4: Payment */}
         {step === 4 && (
           <div className="step-4">
+            <div className="payment-grid">
+              {/* Payment Summary */}
+              <div className="form-section">
+                <h3 className="section-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                    <line x1="1" y1="10" x2="23" y2="10"/>
+                  </svg>
+                  Zahlungsübersicht
+                </h3>
+                <div className="payment-summary">
+                  <div className="summary-row">
+                    <span className="label">{selectedAppointmentType?.name}</span>
+                    <span className="value">€ {selectedAppointmentType?.price},-</span>
+                  </div>
+                  {patientData.patientStatus === 'neu' && (
+                    <div className="summary-row">
+                      <span className="label">Erstbesuch-Gebühr (Anamnese)</span>
+                      <span className="value">€ 15,-</span>
+                    </div>
+                  )}
+                  <div className="summary-row total">
+                    <span className="label">Gesamtbetrag</span>
+                    <span className="value">€ {calculateTotal()},-</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Payment Methods */}
+              <div className="form-section">
+                <h3 className="section-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                    <line x1="1" y1="10" x2="23" y2="10"/>
+                  </svg>
+                  Zahlungsmethode wählen
+                </h3>
+                <div className="payment-methods">
+                  <button
+                    type="button"
+                    className={`payment-method-btn ${paymentMethod === 'google' ? 'selected' : ''}`}
+                    onClick={() => setPaymentMethod('google')}
+                  >
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                      <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                      <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                      <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                    </svg>
+                    <span>Google Pay</span>
+                  </button>
+                  <button
+                    type="button"
+                    className={`payment-method-btn ${paymentMethod === 'apple' ? 'selected' : ''}`}
+                    onClick={() => setPaymentMethod('apple')}
+                  >
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                    </svg>
+                    <span>Apple Pay</span>
+                  </button>
+                  <button
+                    type="button"
+                    className={`payment-method-btn ${paymentMethod === 'paypal' ? 'selected' : ''}`}
+                    onClick={() => setPaymentMethod('paypal')}
+                  >
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.59 3.016-2.47 4.857-6.145 4.857h-2.19a1.58 1.58 0 0 0-1.557 1.333l-1.12 7.106a.641.641 0 0 0 .633.74h3.248c.525 0 .973-.382 1.055-.9l.796-5.047c.082-.519.53-.9 1.055-.9h.657c4.332 0 7.703-1.756 8.693-6.834.326-1.669.182-3.065-.778-4.068z"/>
+                    </svg>
+                    <span>PayPal</span>
+                  </button>
+                  <button
+                    type="button"
+                    className={`payment-method-btn ${paymentMethod === 'card' ? 'selected' : ''}`}
+                    onClick={() => setPaymentMethod('card')}
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                      <line x1="1" y1="10" x2="23" y2="10"/>
+                    </svg>
+                    <span>Kreditkarte</span>
+                  </button>
+                  <button
+                    type="button"
+                    className={`payment-method-btn ${paymentMethod === 'klarna' ? 'selected' : ''}`}
+                    onClick={() => setPaymentMethod('klarna')}
+                  >
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M4.592 2v20H2V2h2.592zm10.664 0a8.684 8.684 0 0 1-3.426 6.909L18 22h-3.293l-5.874-12.005A8.632 8.632 0 0 0 12.592 2h2.664zM21 17.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5z"/>
+                    </svg>
+                    <span>Klarna</span>
+                  </button>
+                </div>
+
+                {/* Credit Card Form */}
+                {paymentMethod === 'card' && (
+                  <div className="card-form">
+                    <div className="form-group">
+                      <label>Kartennummer</label>
+                      <input
+                        type="text"
+                        value={cardData.number}
+                        onChange={(e) => setCardData({...cardData, number: formatCardNumber(e.target.value)})}
+                        placeholder="1234 5678 9012 3456"
+                        maxLength="19"
+                      />
+                    </div>
+                    <div className="form-group">
+                      <label>Karteninhaber</label>
+                      <input
+                        type="text"
+                        value={cardData.name}
+                        onChange={(e) => setCardData({...cardData, name: e.target.value.toUpperCase()})}
+                        placeholder="MAX MUSTERMANN"
+                      />
+                    </div>
+                    <div className="form-row">
+                      <div className="form-group">
+                        <label>Gültig bis</label>
+                        <input
+                          type="text"
+                          value={cardData.expiry}
+                          onChange={(e) => setCardData({...cardData, expiry: formatExpiry(e.target.value)})}
+                          placeholder="MM/YY"
+                          maxLength="5"
+                        />
+                      </div>
+                      <div className="form-group">
+                        <label>CVV</label>
+                        <input
+                          type="text"
+                          value={cardData.cvv}
+                          onChange={(e) => setCardData({...cardData, cvv: e.target.value.replace(/\D/g, '').substring(0, 4)})}
+                          placeholder="123"
+                          maxLength="4"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Payment Method Info */}
+                {paymentMethod && paymentMethod !== 'card' && (
+                  <div className="payment-info">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="10"/>
+                      <line x1="12" y1="16" x2="12" y2="12"/>
+                      <line x1="12" y1="8" x2="12.01" y2="8"/>
+                    </svg>
+                    <p>Sie werden nach der Bestätigung zu {paymentMethod === 'google' ? 'Google Pay' : paymentMethod === 'apple' ? 'Apple Pay' : paymentMethod === 'paypal' ? 'PayPal' : 'Klarna'} weitergeleitet.</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Step 5: Confirmation */}
+        {step === 5 && (
+          <div className="step-5">
             <div className="confirmation-grid">
               {/* Appointment Summary */}
               <div className="summary-section">
@@ -936,7 +1146,7 @@ export default function DoctorBookingForm() {
           </button>
         )}
 
-        {step < 4 ? (
+        {step < 5 ? (
           <button
             className="btn btn-primary"
             onClick={handleNext}
@@ -957,14 +1167,14 @@ export default function DoctorBookingForm() {
             {isSubmitting ? (
               <>
                 <span className="spinner"></span>
-                Termin wird gebucht...
+                Zahlung wird verarbeitet...
               </>
             ) : (
               <>
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <polyline points="20 6 9 17 4 12"/>
                 </svg>
-                Termin verbindlich buchen
+                Jetzt € {calculateTotal()},- bezahlen
               </>
             )}
           </button>

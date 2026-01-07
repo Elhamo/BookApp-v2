@@ -2,102 +2,139 @@
 // Terminbuchungssystem für eine Arztpraxis
 
 export const praxisConfig = {
-  id: 'arztpraxis-wien-2025',
-  name: 'Praxis Dr. Weber & Partner',
-  description: 'Allgemeinmedizin & Innere Medizin',
+  id: 'zahnarztpraxis-edler-2025',
+  name: 'Dr. Albrecht Edler',
+  description: 'Zahn-, Mund- und Kieferheilkunde',
   location: 'Mariahilfer Straße 100, 1060 Wien',
   phone: '+43 1 234 5678',
-  email: 'ordination@praxis-weber.at',
+  email: 'ordination@dr-edler.at',
 
   // Arzt der Klinik
   doctors: [
     {
-      id: 'dr-weber',
-      name: 'Dr. Maria Weber',
-      title: 'Fachärztin für Allgemeinmedizin',
-      specialization: 'Allgemeinmedizin & Innere Medizin',
+      id: 'dr-edler',
+      name: 'Dr. Albrecht Edler',
+      title: 'Facharzt für Zahn-, Mund- und Kieferheilkunde',
+      specialization: 'Zahn-, Mund- und Kieferheilkunde',
       image: null,
       availableDays: ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag'],
       color: '#3b82f6' // Blue
     }
   ],
 
-  // Terminarten
+  // Terminarten / Behandlungen
   appointmentTypes: [
     {
-      id: 'ersttermin',
-      name: 'Ersttermin',
-      description: 'Erstmaliger Besuch in unserer Praxis',
-      duration: 30,
-      icon: 'user-plus',
-      color: '#8b5cf6'
-    },
-    {
-      id: 'folgetermin',
-      name: 'Folgetermin',
-      description: 'Nachuntersuchung oder Befundbesprechung',
-      duration: 15,
-      icon: 'refresh',
-      color: '#3b82f6'
-    },
-    {
-      id: 'akuttermin',
-      name: 'Akuttermin',
-      description: 'Dringende medizinische Angelegenheit',
-      duration: 20,
-      icon: 'alert-circle',
-      color: '#ef4444',
-      urgent: true
-    },
-    {
-      id: 'vorsorge',
-      name: 'Vorsorgeuntersuchung',
-      description: 'Jährliche Gesundenuntersuchung',
-      duration: 45,
-      icon: 'heart',
-      color: '#10b981'
-    },
-    {
-      id: 'impfung',
-      name: 'Impfung',
-      description: 'Schutzimpfung oder Auffrischung',
-      duration: 15,
-      icon: 'shield',
+      id: 'bleaching',
+      name: 'Bleaching',
+      description: 'Professionelle Zahnaufhellung',
+      duration: 60,
+      icon: 'sparkle',
       color: '#f59e0b'
     },
     {
-      id: 'rezept',
-      name: 'Rezept / Überweisung',
-      description: 'Rezeptausstellung oder Überweisung',
-      duration: 10,
-      icon: 'file-text',
-      color: '#6b7280'
+      id: 'veneers',
+      name: 'Veneers',
+      description: 'Keramikverblendschalen für perfekte Zähne',
+      duration: 60,
+      icon: 'smile',
+      color: '#8b5cf6'
     },
     {
-      id: 'beratung',
-      name: 'Beratungsgespräch',
-      description: 'Ausführliches Gespräch zu Gesundheitsfragen',
+      id: 'kieferorthopaedie',
+      name: 'Kieferorthopädie',
+      description: 'Beratung & Behandlung von Zahnfehlstellungen',
+      duration: 45,
+      icon: 'align',
+      color: '#3b82f6'
+    },
+    {
+      id: 'durchsichtige-zahnspange',
+      name: 'Durchsichtige Zahnspange',
+      description: 'Unsichtbare Aligner für diskrete Korrektur',
       duration: 30,
-      icon: 'message-circle',
+      icon: 'invisible',
+      color: '#06b6d4'
+    },
+    {
+      id: 'festsitzende-zahnspange',
+      name: 'Festsitzende Zahnspange',
+      description: 'Klassische Brackets für effektive Korrektur',
+      duration: 45,
+      icon: 'brackets',
+      color: '#6366f1'
+    },
+    {
+      id: 'zahnerhaltung',
+      name: 'Zahnerhaltung',
+      description: 'Füllungen, Wurzelbehandlungen & mehr',
+      duration: 45,
+      icon: 'tooth',
+      color: '#10b981'
+    },
+    {
+      id: 'mundhygiene',
+      name: 'Mundhygiene',
+      description: 'Professionelle Zahnreinigung',
+      duration: 45,
+      icon: 'clean',
+      color: '#14b8a6'
+    },
+    {
+      id: 'inlays-onlays',
+      name: 'Inlays und Onlays',
+      description: 'Hochwertige Einlagefüllungen',
+      duration: 60,
+      icon: 'inlay',
+      color: '#f97316'
+    },
+    {
+      id: 'zahnersatz',
+      name: 'Zahnersatz',
+      description: 'Beratung & Anfertigung von Zahnersatz',
+      duration: 45,
+      icon: 'denture',
       color: '#ec4899'
+    },
+    {
+      id: 'zahnimplantate',
+      name: 'Zahnimplantate',
+      description: 'Dauerhafte Zahnwurzel-Ersatz',
+      duration: 60,
+      icon: 'implant',
+      color: '#ef4444'
+    },
+    {
+      id: 'zahnprothesen',
+      name: 'Zahnprothesen',
+      description: 'Teil- und Vollprothesen',
+      duration: 45,
+      icon: 'prothesis',
+      color: '#a855f7'
+    },
+    {
+      id: 'kronen-bruecken',
+      name: 'Zahnkronen und -brücken',
+      description: 'Festsitzender Zahnersatz',
+      duration: 60,
+      icon: 'crown',
+      color: '#eab308'
     }
   ],
 
   // Besuchsgründe / Anliegen
   visitReasons: [
     { id: 'kontrolle', name: 'Kontrolluntersuchung', category: 'routine' },
-    { id: 'schmerzen', name: 'Schmerzen', category: 'akut' },
-    { id: 'erkaeltung', name: 'Erkältung / Grippe', category: 'akut' },
-    { id: 'hautprobleme', name: 'Hautprobleme', category: 'allgemein' },
-    { id: 'blutdruck', name: 'Blutdruckkontrolle', category: 'routine' },
-    { id: 'blutzucker', name: 'Blutzuckerkontrolle', category: 'routine' },
-    { id: 'labor', name: 'Laboruntersuchung / Blutabnahme', category: 'routine' },
-    { id: 'krankschreibung', name: 'Krankschreibung', category: 'administrativ' },
-    { id: 'attest', name: 'Ärztliches Attest', category: 'administrativ' },
-    { id: 'impfberatung', name: 'Impfberatung', category: 'beratung' },
-    { id: 'reisemedizin', name: 'Reisemedizinische Beratung', category: 'beratung' },
-    { id: 'ernaehrung', name: 'Ernährungsberatung', category: 'beratung' },
-    { id: 'psychisch', name: 'Psychische Belastung / Stress', category: 'beratung' },
+    { id: 'zahnschmerzen', name: 'Zahnschmerzen', category: 'akut' },
+    { id: 'karies', name: 'Karies / Loch im Zahn', category: 'akut' },
+    { id: 'zahnfleisch', name: 'Zahnfleischprobleme', category: 'akut' },
+    { id: 'aesthetik', name: 'Ästhetische Beratung', category: 'beratung' },
+    { id: 'zahnspange', name: 'Zahnspangen-Beratung', category: 'beratung' },
+    { id: 'implantate', name: 'Implantat-Beratung', category: 'beratung' },
+    { id: 'reinigung', name: 'Professionelle Reinigung', category: 'routine' },
+    { id: 'bleaching-beratung', name: 'Bleaching-Beratung', category: 'beratung' },
+    { id: 'prothese', name: 'Prothesen-Anpassung', category: 'routine' },
+    { id: 'notfall', name: 'Zahnärztlicher Notfall', category: 'akut' },
     { id: 'sonstiges', name: 'Sonstiges', category: 'allgemein' }
   ],
 

@@ -380,13 +380,18 @@ export default function DoctorBookingForm() {
                     style={{ '--type-color': type.color }}
                   >
                     <div className="type-icon">
-                      {type.id === 'ersttermin' && '👤'}
-                      {type.id === 'folgetermin' && '🔄'}
-                      {type.id === 'akuttermin' && '🚨'}
-                      {type.id === 'vorsorge' && '❤️'}
-                      {type.id === 'impfung' && '💉'}
-                      {type.id === 'rezept' && '📋'}
-                      {type.id === 'beratung' && '💬'}
+                      {type.id === 'bleaching' && '✨'}
+                      {type.id === 'veneers' && '😁'}
+                      {type.id === 'kieferorthopaedie' && '🦷'}
+                      {type.id === 'durchsichtige-zahnspange' && '🔍'}
+                      {type.id === 'festsitzende-zahnspange' && '🔧'}
+                      {type.id === 'zahnerhaltung' && '🛡️'}
+                      {type.id === 'mundhygiene' && '🪥'}
+                      {type.id === 'inlays-onlays' && '💎'}
+                      {type.id === 'zahnersatz' && '🦷'}
+                      {type.id === 'zahnimplantate' && '⚙️'}
+                      {type.id === 'zahnprothesen' && '🔄'}
+                      {type.id === 'kronen-bruecken' && '👑'}
                     </div>
                     <div className="type-info">
                       <span className="type-name">{type.name}</span>

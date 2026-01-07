@@ -30,6 +30,7 @@ export default function DoctorBookingForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [bookingComplete, setBookingComplete] = useState(false);
   const [bookingReference, setBookingReference] = useState(null);
+  const [calendarMonth, setCalendarMonth] = useState(new Date());
 
   // Auto-select doctor if only one exists
   useEffect(() => {
@@ -47,32 +48,90 @@ export default function DoctorBookingForm() {
     { id: 4, title: 'Bestätigung', icon: 'check' }
   ];
 
-  // Generate available dates (next 4 weeks)
-  const generateAvailableDates = () => {
-    const dates = [];
+  // Calendar helper functions
+  const getDaysInMonth = (date) => {
+    return new Date(date.getFullYear(), date.getMonth() + 1, 0).getDate();
+  };
+
+  const getFirstDayOfMonth = (date) => {
+    const firstDay = new Date(date.getFullYear(), date.getMonth(), 1).getDay();
+    // Convert Sunday (0) to 7 for European calendar (Monday first)
+    return firstDay === 0 ? 6 : firstDay - 1;
+  };
+
+  const isDateAvailable = (date) => {
     const today = new Date();
-    for (let i = 1; i <= 28; i++) {
-      const date = new Date(today);
-      date.setDate(today.getDate() + i);
+    today.setHours(0, 0, 0, 0);
+
+    // Can't book today or past dates
+    if (date <= today) return false;
+
+    // Can't book more than 8 weeks ahead
+    const maxDate = new Date(today);
+    maxDate.setDate(today.getDate() + 56);
+    if (date > maxDate) return false;
+
+    const dayName = date.toLocaleDateString('de-DE', { weekday: 'long' });
+    const dayKey = dayName.charAt(0).toUpperCase() + dayName.slice(1);
+
+    // Check if practice is open and doctor is available
+    return praxisConfig.openingHours[dayKey] &&
+           (!selectedDoctor || selectedDoctor.availableDays.includes(dayKey));
+  };
+
+  const generateCalendarDays = () => {
+    const days = [];
+    const daysInMonth = getDaysInMonth(calendarMonth);
+    const firstDay = getFirstDayOfMonth(calendarMonth);
+
+    // Add empty cells for days before the first day of the month
+    for (let i = 0; i < firstDay; i++) {
+      days.push({ empty: true, key: `empty-${i}` });
+    }
+
+    // Add days of the month
+    for (let day = 1; day <= daysInMonth; day++) {
+      const date = new Date(calendarMonth.getFullYear(), calendarMonth.getMonth(), day);
       const dayName = date.toLocaleDateString('de-DE', { weekday: 'long' });
       const dayKey = dayName.charAt(0).toUpperCase() + dayName.slice(1);
 
-      // Check if practice is open and doctor is available
-      if (praxisConfig.openingHours[dayKey] &&
-          (!selectedDoctor || selectedDoctor.availableDays.includes(dayKey))) {
-        dates.push({
-          date: date,
-          dayName: dayKey,
-          formatted: date.toLocaleDateString('de-DE', {
-            weekday: 'short',
-            day: 'numeric',
-            month: 'short'
-          })
-        });
-      }
+      days.push({
+        date: date,
+        day: day,
+        dayName: dayKey,
+        available: isDateAvailable(date),
+        formatted: date.toLocaleDateString('de-DE', {
+          weekday: 'short',
+          day: 'numeric',
+          month: 'short'
+        }),
+        key: `day-${day}`
+      });
     }
-    return dates;
+
+    return days;
   };
+
+  const navigateMonth = (direction) => {
+    const newMonth = new Date(calendarMonth);
+    newMonth.setMonth(calendarMonth.getMonth() + direction);
+
+    // Don't allow navigating to past months
+    const today = new Date();
+    if (newMonth.getFullYear() < today.getFullYear() ||
+        (newMonth.getFullYear() === today.getFullYear() && newMonth.getMonth() < today.getMonth())) {
+      return;
+    }
+
+    // Don't allow navigating more than 2 months ahead
+    const maxMonth = new Date(today);
+    maxMonth.setMonth(today.getMonth() + 2);
+    if (newMonth > maxMonth) return;
+
+    setCalendarMonth(newMonth);
+  };
+
+  const weekDays = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
 
   // Get available time slots for selected date
   const getAvailableTimeSlots = () => {
@@ -433,7 +492,7 @@ export default function DoctorBookingForm() {
               </div>
             </div>
 
-            {/* Date Selection */}
+            {/* Date Selection - Calendar */}
             <div className="form-section">
               <h3 className="section-title">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -444,21 +503,74 @@ export default function DoctorBookingForm() {
                 </svg>
                 Wählen Sie ein Datum
               </h3>
-              <div className="dates-scroll">
-                {generateAvailableDates().map((dateObj, index) => (
+
+              <div className="calendar-container">
+                {/* Calendar Header */}
+                <div className="calendar-header">
                   <button
-                    key={index}
-                    className={`date-card ${selectedDate?.formatted === dateObj.formatted ? 'selected' : ''}`}
-                    onClick={() => {
-                      setSelectedDate(dateObj);
-                      setSelectedTime(null);
-                    }}
+                    className="calendar-nav-btn"
+                    onClick={() => navigateMonth(-1)}
                   >
-                    <span className="date-day">{dateObj.dayName.substring(0, 2)}</span>
-                    <span className="date-number">{dateObj.date.getDate()}</span>
-                    <span className="date-month">{dateObj.date.toLocaleDateString('de-DE', { month: 'short' })}</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="15 18 9 12 15 6"/>
+                    </svg>
                   </button>
-                ))}
+                  <span className="calendar-month-title">
+                    {calendarMonth.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' })}
+                  </span>
+                  <button
+                    className="calendar-nav-btn"
+                    onClick={() => navigateMonth(1)}
+                  >
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <polyline points="9 18 15 12 9 6"/>
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Weekday Headers */}
+                <div className="calendar-weekdays">
+                  {weekDays.map(day => (
+                    <span key={day} className="weekday">{day}</span>
+                  ))}
+                </div>
+
+                {/* Calendar Grid */}
+                <div className="calendar-grid">
+                  {generateCalendarDays().map((dayObj) => (
+                    dayObj.empty ? (
+                      <div key={dayObj.key} className="calendar-day empty"></div>
+                    ) : (
+                      <button
+                        key={dayObj.key}
+                        className={`calendar-day ${dayObj.available ? 'available' : 'unavailable'} ${
+                          selectedDate?.date?.getTime() === dayObj.date.getTime() ? 'selected' : ''
+                        }`}
+                        disabled={!dayObj.available}
+                        onClick={() => {
+                          if (dayObj.available) {
+                            setSelectedDate(dayObj);
+                            setSelectedTime(null);
+                          }
+                        }}
+                      >
+                        {dayObj.day}
+                      </button>
+                    )
+                  ))}
+                </div>
+
+                {/* Legend */}
+                <div className="calendar-legend">
+                  <span className="legend-item">
+                    <span className="legend-dot available"></span>
+                    Verfügbar
+                  </span>
+                  <span className="legend-item">
+                    <span className="legend-dot unavailable"></span>
+                    Nicht verfügbar
+                  </span>
+                </div>
               </div>
             </div>
 

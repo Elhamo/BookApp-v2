@@ -440,25 +440,8 @@ export default function DoctorBookingForm() {
                     onClick={() => setSelectedAppointmentType(type)}
                     style={{ '--type-color': type.color }}
                   >
-                    <div className="type-icon">
-                      {type.id === 'bleaching' && '✨'}
-                      {type.id === 'veneers' && '😁'}
-                      {type.id === 'kieferorthopaedie' && '🦷'}
-                      {type.id === 'durchsichtige-zahnspange' && '🔍'}
-                      {type.id === 'festsitzende-zahnspange' && '🔧'}
-                      {type.id === 'zahnerhaltung' && '🛡️'}
-                      {type.id === 'mundhygiene' && '🪥'}
-                      {type.id === 'inlays-onlays' && '💎'}
-                      {type.id === 'zahnersatz' && '🦷'}
-                      {type.id === 'zahnimplantate' && '⚙️'}
-                      {type.id === 'zahnprothesen' && '🔄'}
-                      {type.id === 'kronen-bruecken' && '👑'}
-                    </div>
-                    <div className="type-info">
-                      <span className="type-name">{type.name}</span>
-                      <span className="type-duration">ca. {type.duration} Min.</span>
-                    </div>
-                    <p className="type-desc">{type.description}</p>
+                    <span className="type-name">{type.name}</span>
+                    <span className="type-duration">ca. {type.duration} Min.</span>
                   </div>
                 ))}
               </div>
@@ -469,134 +452,110 @@ export default function DoctorBookingForm() {
         {/* Step 2: Date & Time */}
         {step === 2 && (
           <div className="step-2">
-            {/* Preferred Time */}
-            <div className="form-section">
-              <h3 className="section-title">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polyline points="12 6 12 12 16 14"/>
-                </svg>
-                Bevorzugte Tageszeit
-              </h3>
-              <div className="preferred-time-options">
-                {praxisConfig.preferredTime.map(time => (
-                  <button
-                    key={time.id}
-                    className={`time-option ${preferredTime === time.id ? 'selected' : ''}`}
-                    onClick={() => setPreferredTime(time.id)}
-                  >
-                    <span className="time-name">{time.name}</span>
-                    <span className="time-desc">{time.description}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
+            {/* Calendar and Time in Two Columns */}
+            <div className="date-time-grid">
+              {/* Left: Calendar */}
+              <div className="form-section calendar-section">
+                <h3 className="section-title">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                    <line x1="16" y1="2" x2="16" y2="6"/>
+                    <line x1="8" y1="2" x2="8" y2="6"/>
+                    <line x1="3" y1="10" x2="21" y2="10"/>
+                  </svg>
+                  Datum wählen
+                </h3>
 
-            {/* Date Selection - Calendar */}
-            <div className="form-section">
-              <h3 className="section-title">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
-                  <line x1="16" y1="2" x2="16" y2="6"/>
-                  <line x1="8" y1="2" x2="8" y2="6"/>
-                  <line x1="3" y1="10" x2="21" y2="10"/>
-                </svg>
-                Wählen Sie ein Datum
-              </h3>
+                <div className="calendar-container compact">
+                  {/* Calendar Header */}
+                  <div className="calendar-header">
+                    <button
+                      className="calendar-nav-btn"
+                      onClick={() => navigateMonth(-1)}
+                    >
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <polyline points="15 18 9 12 15 6"/>
+                      </svg>
+                    </button>
+                    <span className="calendar-month-title">
+                      {calendarMonth.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' })}
+                    </span>
+                    <button
+                      className="calendar-nav-btn"
+                      onClick={() => navigateMonth(1)}
+                    >
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <polyline points="9 18 15 12 9 6"/>
+                      </svg>
+                    </button>
+                  </div>
 
-              <div className="calendar-container">
-                {/* Calendar Header */}
-                <div className="calendar-header">
-                  <button
-                    className="calendar-nav-btn"
-                    onClick={() => navigateMonth(-1)}
-                  >
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polyline points="15 18 9 12 15 6"/>
-                    </svg>
-                  </button>
-                  <span className="calendar-month-title">
-                    {calendarMonth.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' })}
-                  </span>
-                  <button
-                    className="calendar-nav-btn"
-                    onClick={() => navigateMonth(1)}
-                  >
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <polyline points="9 18 15 12 9 6"/>
-                    </svg>
-                  </button>
-                </div>
+                  {/* Weekday Headers */}
+                  <div className="calendar-weekdays">
+                    {weekDays.map(day => (
+                      <span key={day} className="weekday">{day}</span>
+                    ))}
+                  </div>
 
-                {/* Weekday Headers */}
-                <div className="calendar-weekdays">
-                  {weekDays.map(day => (
-                    <span key={day} className="weekday">{day}</span>
-                  ))}
-                </div>
-
-                {/* Calendar Grid */}
-                <div className="calendar-grid">
-                  {generateCalendarDays().map((dayObj) => (
-                    dayObj.empty ? (
-                      <div key={dayObj.key} className="calendar-day empty"></div>
-                    ) : (
-                      <button
-                        key={dayObj.key}
-                        className={`calendar-day ${dayObj.available ? 'available' : 'unavailable'} ${
-                          selectedDate?.date?.getTime() === dayObj.date.getTime() ? 'selected' : ''
-                        }`}
-                        disabled={!dayObj.available}
-                        onClick={() => {
-                          if (dayObj.available) {
-                            setSelectedDate(dayObj);
-                            setSelectedTime(null);
-                          }
-                        }}
-                      >
-                        {dayObj.day}
-                      </button>
-                    )
-                  ))}
-                </div>
-
-                {/* Legend */}
-                <div className="calendar-legend">
-                  <span className="legend-item">
-                    <span className="legend-dot available"></span>
-                    Verfügbar
-                  </span>
-                  <span className="legend-item">
-                    <span className="legend-dot unavailable"></span>
-                    Nicht verfügbar
-                  </span>
+                  {/* Calendar Grid */}
+                  <div className="calendar-grid">
+                    {generateCalendarDays().map((dayObj) => (
+                      dayObj.empty ? (
+                        <div key={dayObj.key} className="calendar-day empty"></div>
+                      ) : (
+                        <button
+                          key={dayObj.key}
+                          className={`calendar-day ${dayObj.available ? 'available' : 'unavailable'} ${
+                            selectedDate?.date?.getTime() === dayObj.date.getTime() ? 'selected' : ''
+                          }`}
+                          disabled={!dayObj.available}
+                          onClick={() => {
+                            if (dayObj.available) {
+                              setSelectedDate(dayObj);
+                              setSelectedTime(null);
+                            }
+                          }}
+                        >
+                          {dayObj.day}
+                        </button>
+                      )
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
 
-            {/* Time Selection */}
-            {selectedDate && (
-              <div className="form-section">
+              {/* Right: Time Selection */}
+              <div className="form-section time-section">
                 <h3 className="section-title">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <circle cx="12" cy="12" r="10"/>
                     <polyline points="12 6 12 12 16 14"/>
                   </svg>
-                  Verfügbare Uhrzeiten am {selectedDate.formatted}
+                  {selectedDate ? `Uhrzeit am ${selectedDate.formatted}` : 'Uhrzeit wählen'}
                 </h3>
-                <div className="time-slots-grid">
-                  {getAvailableTimeSlots().map(time => (
-                    <button
-                      key={time}
-                      className={`time-slot ${selectedTime === time ? 'selected' : ''}`}
-                      onClick={() => setSelectedTime(time)}
-                    >
-                      {time}
-                    </button>
-                  ))}
-                </div>
+                {selectedDate ? (
+                  <div className="time-slots-grid">
+                    {getAvailableTimeSlots().map(time => (
+                      <button
+                        key={time}
+                        className={`time-slot ${selectedTime === time ? 'selected' : ''}`}
+                        onClick={() => setSelectedTime(time)}
+                      >
+                        {time}
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="time-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <circle cx="12" cy="12" r="10"/>
+                      <polyline points="12 6 12 12 16 14"/>
+                    </svg>
+                    <p>Bitte wählen Sie zuerst ein Datum</p>
+                  </div>
+                )}
               </div>
-            )}
+            </div>
           </div>
         )}
 

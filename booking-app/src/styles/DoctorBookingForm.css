@@ -1598,6 +1598,15 @@
     height: 16px;
   }
 
+  /* Rechtsanwalt mobile: white checkmark */
+  .rechtsanwalt-app .step.completed .step-number {
+    color: white !important;
+  }
+
+  .rechtsanwalt-app .step.completed .step-number svg polyline {
+    stroke: white !important;
+  }
+
   .doctor-booking-form {
     overflow-x: hidden;
   }

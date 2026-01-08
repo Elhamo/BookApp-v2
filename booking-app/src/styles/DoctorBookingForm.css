@@ -1306,6 +1306,14 @@
   color: #a67c52;
 }
 
+.rechtsanwalt-app .consultation-icon {
+  background: linear-gradient(135deg, #c9a66b, #a67c52);
+}
+
+.rechtsanwalt-app .type-icon {
+  background: linear-gradient(135deg, #c9a66b, #a67c52);
+}
+
 /* ============================================ */
 
 /* Animations */

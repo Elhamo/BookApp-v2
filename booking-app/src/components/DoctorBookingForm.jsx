@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import praxisConfig from '../data/arztpraxis';
+import defaultConfig from '../data/arztpraxis';
 import '../styles/DoctorBookingForm.css';
 
-export default function DoctorBookingForm() {
+export default function DoctorBookingForm({ config }) {
+  const praxisConfig = config || defaultConfig;
   const [step, setStep] = useState(1);
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [selectedAppointmentType, setSelectedAppointmentType] = useState(null);
@@ -44,7 +45,7 @@ export default function DoctorBookingForm() {
     if (praxisConfig.doctors.length === 1 && !selectedDoctor) {
       setSelectedDoctor(praxisConfig.doctors[0]);
     }
-  }, []);
+  }, [praxisConfig]);
 
   const singleDoctorMode = praxisConfig.doctors.length === 1;
 

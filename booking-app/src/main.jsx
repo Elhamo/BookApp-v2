@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import DoctorApp from './components/DoctorApp.jsx'
+import ZahnarztDemoApp from './components/ZahnarztDemoApp.jsx'
 import HomePage from './components/HomePage.jsx'
 
 createRoot(document.getElementById('root')).render(
@@ -13,6 +14,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/" element={<HomePage />} />
         <Route path="/eislaufen" element={<App />} />
         <Route path="/arzt" element={<DoctorApp />} />
+        <Route path="/zahnarzt" element={<ZahnarztDemoApp />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

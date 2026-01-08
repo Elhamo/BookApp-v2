@@ -1202,14 +1202,27 @@
 @media (max-width: 640px) {
   .doctor-booking-form {
     padding: 1rem;
+    padding-top: 0;
   }
 
   .booking-steps {
-    padding: 1rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0.75rem 1rem;
+    margin: 0 -1rem 1.5rem -1rem;
+    border-radius: 0;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   }
 
   .step-title {
     display: none;
+  }
+
+  .step-number {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
   }
 
   .form-section {

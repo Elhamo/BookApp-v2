@@ -1243,17 +1243,18 @@
     box-shadow: none !important;
     font-size: 1.1rem !important;
     font-weight: 700 !important;
-    color: rgba(255, 255, 255, 0.5) !important;
+    color: #1e3a5f !important;
     padding: 4px 8px !important;
   }
 
   .step.active .step-number {
-    color: white !important;
-    font-size: 1.3rem !important;
+    color: #0f172a !important;
+    font-size: 1.4rem !important;
+    text-shadow: 0 0 10px rgba(255,255,255,0.5) !important;
   }
 
   .step.completed .step-number {
-    color: rgba(255, 255, 255, 0.8) !important;
+    color: #065f46 !important;
     background: transparent !important;
   }
 

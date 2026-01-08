@@ -25,7 +25,7 @@ export const rechtsanwaltConfig = {
   ],
 
   // Anwalt
-  lawyers: [
+  doctors: [
     {
       id: 'ra-siudak',
       name: 'Mag. Dr. Sebastian Siudak',
@@ -233,6 +233,38 @@ export const rechtsanwaltConfig = {
   languages: [
     { id: 'de', name: 'Deutsch', flag: '', doctors: ['ra-siudak'] },
     { id: 'en', name: 'English', flag: '', doctors: ['ra-siudak'] }
+  ],
+
+  // Abrechnungsarten (anstatt Versicherung)
+  insuranceTypes: [
+    {
+      id: 'privat',
+      name: 'Privatrechnung',
+      description: 'Rechnung nach Leistung',
+      icon: 'file-text'
+    },
+    {
+      id: 'rechtsschutz',
+      name: 'Rechtsschutzversicherung',
+      description: 'Abrechnung über Ihre Versicherung',
+      icon: 'shield-check'
+    }
+  ],
+
+  // Barrierefreiheit
+  accessibility: [
+    {
+      id: 'keine',
+      name: 'Keine besonderen Anforderungen',
+      icon: 'check'
+    },
+    {
+      id: 'rollstuhl',
+      name: 'Rollstuhlgerecht',
+      description: 'Barrierefreier Zugang erforderlich',
+      icon: 'wheelchair',
+      available: true
+    }
   ],
 
   // Verfügbare Zeitfenster

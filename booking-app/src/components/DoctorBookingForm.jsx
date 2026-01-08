@@ -672,91 +672,93 @@ export default function DoctorBookingForm({ config }) {
                 </div>
               </div>
 
-              {/* Insurance & Status */}
-              <div className="form-section">
-                <h3 className="section-title">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                  </svg>
-                  Versicherung & Status
-                </h3>
+              {/* Insurance & Status - nur für Arzt, nicht für Rechtsanwalt */}
+              {!praxisConfig.hideInsuranceSection && (
+                <div className="form-section">
+                  <h3 className="section-title">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                    </svg>
+                    Versicherung & Status
+                  </h3>
 
-                <div className="form-group">
-                  <label>Versicherungsart *</label>
-                  <div className="insurance-options">
-                    {praxisConfig.insuranceTypes.map(ins => (
-                      <button
-                        key={ins.id}
-                        type="button"
-                        className={`insurance-btn ${patientData.insuranceType === ins.id ? 'selected' : ''}`}
-                        onClick={() => setPatientData({...patientData, insuranceType: ins.id})}
-                      >
-                        <span className="ins-name">{ins.name}</span>
-                        <span className="ins-desc">{ins.description}</span>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                {patientData.insuranceType === 'gesetzlich' && (
                   <div className="form-group">
-                    <label>Versicherungsnummer (SVNR)</label>
-                    <input
-                      type="text"
-                      value={patientData.insuranceNumber}
-                      onChange={(e) => setPatientData({...patientData, insuranceNumber: e.target.value})}
-                      placeholder="1234 010190"
-                    />
+                    <label>Versicherungsart *</label>
+                    <div className="insurance-options">
+                      {praxisConfig.insuranceTypes.map(ins => (
+                        <button
+                          key={ins.id}
+                          type="button"
+                          className={`insurance-btn ${patientData.insuranceType === ins.id ? 'selected' : ''}`}
+                          onClick={() => setPatientData({...patientData, insuranceType: ins.id})}
+                        >
+                          <span className="ins-name">{ins.name}</span>
+                          <span className="ins-desc">{ins.description}</span>
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                )}
 
-                <div className="form-group">
-                  <label>Patientenstatus</label>
-                  <div className="status-options">
-                    {praxisConfig.patientStatus.map(status => (
-                      <button
-                        key={status.id}
-                        type="button"
-                        className={`status-btn ${patientData.patientStatus === status.id ? 'selected' : ''}`}
-                        onClick={() => setPatientData({...patientData, patientStatus: status.id})}
-                      >
-                        {status.name}
-                      </button>
-                    ))}
+                  {patientData.insuranceType === 'gesetzlich' && (
+                    <div className="form-group">
+                      <label>Versicherungsnummer (SVNR)</label>
+                      <input
+                        type="text"
+                        value={patientData.insuranceNumber}
+                        onChange={(e) => setPatientData({...patientData, insuranceNumber: e.target.value})}
+                        placeholder="1234 010190"
+                      />
+                    </div>
+                  )}
+
+                  <div className="form-group">
+                    <label>Patientenstatus</label>
+                    <div className="status-options">
+                      {praxisConfig.patientStatus.map(status => (
+                        <button
+                          key={status.id}
+                          type="button"
+                          className={`status-btn ${patientData.patientStatus === status.id ? 'selected' : ''}`}
+                          onClick={() => setPatientData({...patientData, patientStatus: status.id})}
+                        >
+                          {status.name}
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                </div>
 
-                <div className="form-group">
-                  <label>Bevorzugte Sprache</label>
-                  <select
-                    value={patientData.language}
-                    onChange={(e) => setPatientData({...patientData, language: e.target.value})}
-                  >
-                    {praxisConfig.languages
-                      .filter(l => l.doctors.includes(selectedDoctor?.id))
-                      .map(lang => (
-                        <option key={lang.id} value={lang.id}>
-                          {lang.flag} {lang.name}
+                  <div className="form-group">
+                    <label>Bevorzugte Sprache</label>
+                    <select
+                      value={patientData.language}
+                      onChange={(e) => setPatientData({...patientData, language: e.target.value})}
+                    >
+                      {praxisConfig.languages
+                        .filter(l => l.doctors.includes(selectedDoctor?.id))
+                        .map(lang => (
+                          <option key={lang.id} value={lang.id}>
+                            {lang.flag} {lang.name}
+                          </option>
+                        ))
+                      }
+                    </select>
+                  </div>
+
+                  <div className="form-group">
+                    <label>Barrierefreiheit</label>
+                    <select
+                      value={patientData.accessibility}
+                      onChange={(e) => setPatientData({...patientData, accessibility: e.target.value})}
+                    >
+                      {praxisConfig.accessibility.map(acc => (
+                        <option key={acc.id} value={acc.id}>
+                          {acc.name}
                         </option>
-                      ))
-                    }
-                  </select>
+                      ))}
+                    </select>
+                  </div>
                 </div>
-
-                <div className="form-group">
-                  <label>Barrierefreiheit</label>
-                  <select
-                    value={patientData.accessibility}
-                    onChange={(e) => setPatientData({...patientData, accessibility: e.target.value})}
-                  >
-                    {praxisConfig.accessibility.map(acc => (
-                      <option key={acc.id} value={acc.id}>
-                        {acc.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
+              )}
             </div>
 
             {/* Visit Reason & Notes */}

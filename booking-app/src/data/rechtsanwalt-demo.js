@@ -9,6 +9,7 @@ export const rechtsanwaltConfig = {
   professionalTitleLong: 'Ihr Anwalt',
   phone: '+43 1 234 5678',
   email: 'kanzlei@ra-siudak.at',
+  hideInsuranceSection: true,
 
   // Standorte
   locations: [

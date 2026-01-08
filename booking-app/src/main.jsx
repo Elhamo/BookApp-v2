@@ -5,6 +5,7 @@ import './index.css'
 import App from './App.jsx'
 import DoctorApp from './components/DoctorApp.jsx'
 import ZahnarztDemoApp from './components/ZahnarztDemoApp.jsx'
+import RechtsanwaltApp from './components/RechtsanwaltApp.jsx'
 import HomePage from './components/HomePage.jsx'
 
 createRoot(document.getElementById('root')).render(
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/eislaufen" element={<App />} />
         <Route path="/arzt" element={<DoctorApp />} />
         <Route path="/zahnarzt" element={<ZahnarztDemoApp />} />
+        <Route path="/rechtsanwalt" element={<RechtsanwaltApp />} />
       </Routes>
     </BrowserRouter>
   </StrictMode>,

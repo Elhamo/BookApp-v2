@@ -48,7 +48,7 @@ export const rechtsanwaltConfig = {
       duration: 30,
       price: 120,
       icon: 'video',
-      color: '#c9a66b',
+      color: '#c5c3c0',
       isOnline: true
     },
     {
@@ -58,7 +58,7 @@ export const rechtsanwaltConfig = {
       duration: 45,
       price: 150,
       icon: 'building',
-      color: '#a67c52',
+      color: '#9a9895',
       isOnline: false
     },
     {
@@ -68,7 +68,7 @@ export const rechtsanwaltConfig = {
       duration: 60,
       price: 250,
       icon: 'file-text',
-      color: '#8b7355'
+      color: '#8a8885'
     },
     {
       id: 'arbeitsrecht',
@@ -77,7 +77,7 @@ export const rechtsanwaltConfig = {
       duration: 60,
       price: 220,
       icon: 'briefcase',
-      color: '#6b5b4f'
+      color: '#6b6966'
     },
     {
       id: 'familienrecht',
@@ -86,7 +86,7 @@ export const rechtsanwaltConfig = {
       duration: 60,
       price: 200,
       icon: 'users',
-      color: '#b8956b'
+      color: '#b5b3b0'
     },
     {
       id: 'mietrecht',
@@ -95,7 +95,7 @@ export const rechtsanwaltConfig = {
       duration: 45,
       price: 180,
       icon: 'home',
-      color: '#d4a574'
+      color: '#a5a3a0'
     },
     {
       id: 'unternehmensrecht',
@@ -104,7 +104,7 @@ export const rechtsanwaltConfig = {
       duration: 60,
       price: 280,
       icon: 'building-2',
-      color: '#9c8b7a'
+      color: '#7a7875'
     },
     {
       id: 'erbrecht',
@@ -113,7 +113,7 @@ export const rechtsanwaltConfig = {
       duration: 60,
       price: 200,
       icon: 'scroll',
-      color: '#7a6b5a'
+      color: '#95938f'
     },
     {
       id: 'strafrecht',
@@ -122,7 +122,7 @@ export const rechtsanwaltConfig = {
       duration: 60,
       price: 300,
       icon: 'shield',
-      color: '#5c4a3d'
+      color: '#5a5855'
     },
     {
       id: 'verkehrsrecht',
@@ -131,7 +131,7 @@ export const rechtsanwaltConfig = {
       duration: 45,
       price: 180,
       icon: 'car',
-      color: '#a08060'
+      color: '#858380'
     }
   ],
 

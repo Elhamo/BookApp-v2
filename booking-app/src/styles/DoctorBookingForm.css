@@ -1199,6 +1199,115 @@
   }
 }
 
+/* ============================================
+   RECHTSANWALT THEME - Beige Colors
+   ============================================ */
+
+.rechtsanwalt-app .booking-steps {
+  background: linear-gradient(135deg, #c9a66b 0%, #a67c52 100%);
+}
+
+.rechtsanwalt-app .step.active .step-number {
+  color: #8b6914;
+}
+
+.rechtsanwalt-app .section-title svg {
+  background: linear-gradient(135deg, #c9a66b, #a67c52);
+}
+
+.rechtsanwalt-app .appointment-type-card.selected {
+  border-color: #c9a66b;
+  background: linear-gradient(135deg, rgba(201, 166, 107, 0.1), rgba(166, 124, 82, 0.05));
+  box-shadow: 0 4px 15px rgba(201, 166, 107, 0.25);
+}
+
+.rechtsanwalt-app .appointment-type-card:hover {
+  border-color: #c9a66b;
+}
+
+.rechtsanwalt-app .type-price {
+  color: #a67c52;
+}
+
+.rechtsanwalt-app .btn-primary {
+  background: linear-gradient(135deg, #c9a66b 0%, #a67c52 100%);
+}
+
+.rechtsanwalt-app .btn-primary:hover {
+  background: linear-gradient(135deg, #b8955a 0%, #956b41 100%);
+}
+
+.rechtsanwalt-app .calendar-day.selected {
+  background: linear-gradient(135deg, #c9a66b, #a67c52);
+}
+
+.rechtsanwalt-app .calendar-day:hover:not(.disabled):not(.past) {
+  box-shadow: 0 4px 12px rgba(201, 166, 107, 0.3);
+}
+
+.rechtsanwalt-app .calendar-day.has-slots:not(.selected) {
+  background: rgba(201, 166, 107, 0.1);
+  border-color: rgba(201, 166, 107, 0.3);
+}
+
+.rechtsanwalt-app .time-slot.selected {
+  background: linear-gradient(135deg, #c9a66b, #a67c52);
+  border-color: #a67c52;
+}
+
+.rechtsanwalt-app .time-slot:hover:not(.unavailable) {
+  border-color: #c9a66b;
+  box-shadow: 0 4px 12px rgba(201, 166, 107, 0.2);
+}
+
+.rechtsanwalt-app .payment-method-btn.selected {
+  border-color: #c9a66b;
+  background: linear-gradient(135deg, rgba(201, 166, 107, 0.1), rgba(166, 124, 82, 0.05));
+}
+
+.rechtsanwalt-app .insurance-option.selected,
+.rechtsanwalt-app .status-option.selected,
+.rechtsanwalt-app .consultation-card.selected {
+  border-color: #c9a66b;
+  background: linear-gradient(135deg, rgba(201, 166, 107, 0.1), rgba(166, 124, 82, 0.05));
+  box-shadow: 0 4px 15px rgba(201, 166, 107, 0.2);
+}
+
+.rechtsanwalt-app .doctor-info-card {
+  border-color: #c9a66b;
+}
+
+.rechtsanwalt-app .doctor-avatar {
+  background: linear-gradient(135deg, #c9a66b, #a67c52);
+}
+
+.rechtsanwalt-app .success-icon {
+  background: linear-gradient(135deg, #c9a66b, #a67c52);
+}
+
+.rechtsanwalt-app .form-group input:focus,
+.rechtsanwalt-app .form-group select:focus,
+.rechtsanwalt-app .form-group textarea:focus {
+  border-color: #c9a66b;
+  box-shadow: 0 0 0 3px rgba(201, 166, 107, 0.15);
+}
+
+.rechtsanwalt-app .checkbox-label input:checked + .checkbox-custom {
+  background: #c9a66b;
+  border-color: #c9a66b;
+}
+
+/* Rechtsanwalt App Header */
+.rechtsanwalt-app .app-header {
+  background: linear-gradient(135deg, #c9a66b 0%, #a67c52 100%);
+}
+
+.rechtsanwalt-app .page-header h1 {
+  color: #a67c52;
+}
+
+/* ============================================ */
+
 /* Animations */
 @keyframes fadeInUp {
   from {

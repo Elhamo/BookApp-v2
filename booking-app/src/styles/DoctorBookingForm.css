@@ -29,16 +29,16 @@
 }
 
 .step-number {
-  width: 40px;
-  height: 40px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: white;
   color: #93c5fd;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 1rem;
+  font-weight: 600;
+  font-size: 0.875rem;
   transition: all 0.3s ease;
   flex-shrink: 0;
 }
@@ -1209,27 +1209,36 @@
 
 .rechtsanwalt-app .step {
   background: transparent;
+  padding: 0.5rem 0.75rem;
 }
 
 .rechtsanwalt-app .step.active {
   background: #42546f;
-  border-radius: 8px;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
 }
 
 .rechtsanwalt-app .step-number {
+  width: 28px;
+  height: 28px;
   background: white;
   color: #42546f;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 2px solid #42546f;
 }
 
 .rechtsanwalt-app .step.active .step-number {
-  background: #42546f;
-  color: white;
-  box-shadow: 0 4px 15px rgba(66, 84, 111, 0.3);
+  background: white;
+  color: #42546f;
+  border-color: white;
+  box-shadow: 0 2px 8px rgba(66, 84, 111, 0.2);
 }
 
 .rechtsanwalt-app .step.completed .step-number {
   background: #42546f;
   color: white;
+  border-color: #42546f;
 }
 
 /* All text colors for Rechtsanwalt */

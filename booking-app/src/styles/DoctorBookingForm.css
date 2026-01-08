@@ -1346,9 +1346,10 @@
   box-shadow: 0 4px 15px rgba(22, 163, 74, 0.2);
 }
 
-.rechtsanwalt-app .consultation-card:hover {
-  background: #c5c3c0;
-  border-color: #c5c3c0;
+.rechtsanwalt-app .consultation-types .consultation-card:hover {
+  background: #c5c3c0 !important;
+  border-color: #c5c3c0 !important;
+  transform: translateY(-2px);
 }
 
 .rechtsanwalt-app .doctor-info-card {

@@ -1207,8 +1207,20 @@
   background: linear-gradient(135deg, #c9a66b 0%, #a67c52 100%);
 }
 
+.rechtsanwalt-app .step-number {
+  background: white;
+  color: #a67c52;
+}
+
 .rechtsanwalt-app .step.active .step-number {
-  color: #8b6914;
+  background: white;
+  color: #5c4a3d;
+  box-shadow: 0 4px 15px rgba(166, 124, 82, 0.3);
+}
+
+.rechtsanwalt-app .step.completed .step-number {
+  background: #a67c52;
+  color: white;
 }
 
 .rechtsanwalt-app .section-title svg {

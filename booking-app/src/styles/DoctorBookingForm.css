@@ -1259,29 +1259,29 @@
 
 /* Appointment type cards background */
 .rechtsanwalt-app .appointment-type-card {
-  background: #42546f;
-  border-color: #42546f;
+  background: white;
+  border: 2px solid #c5c3c0;
 }
 
 .rechtsanwalt-app .appointment-type-card .type-name,
 .rechtsanwalt-app .appointment-type-card .type-duration,
 .rechtsanwalt-app .appointment-type-card .type-description {
-  color: white;
+  color: #42546f;
 }
 
 .rechtsanwalt-app .appointment-type-card .type-price {
-  color: #a5f3fc;
+  color: #42546f;
 }
 
 .rechtsanwalt-app .appointment-type-card:hover {
-  background: #364259;
-  border-color: #364259;
+  background: #c5c3c0;
+  border-color: #c5c3c0;
 }
 
 .rechtsanwalt-app .appointment-type-card.selected {
-  background: #2d3748;
-  border-color: #22c55e;
-  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+  background: #c5c3c0;
+  border-color: #c5c3c0;
+  box-shadow: 0 4px 15px rgba(197, 195, 192, 0.3);
 }
 
 .rechtsanwalt-app .section-title svg {

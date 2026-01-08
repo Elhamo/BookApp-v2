@@ -1279,24 +1279,15 @@
 }
 
 .rechtsanwalt-app .appointment-type-card.selected {
-  background: #c5c3c0;
-  border-color: #c5c3c0;
-  box-shadow: 0 4px 15px rgba(197, 195, 192, 0.3);
+  background: #c5c3c0 !important;
+  border-color: #c5c3c0 !important;
+  box-shadow: 0 4px 15px rgba(197, 195, 192, 0.3) !important;
 }
 
 .rechtsanwalt-app .section-title svg {
   background: linear-gradient(135deg, #c5c3c0, #9a9895);
 }
 
-.rechtsanwalt-app .appointment-type-card.selected {
-  border-color: #c5c3c0;
-  background: linear-gradient(135deg, rgba(197, 195, 192, 0.1), rgba(154, 152, 149, 0.05));
-  box-shadow: 0 4px 15px rgba(197, 195, 192, 0.25);
-}
-
-.rechtsanwalt-app .appointment-type-card:hover {
-  border-color: #c5c3c0;
-}
 
 .rechtsanwalt-app .type-price {
   color: #6b6966;

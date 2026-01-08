@@ -50,15 +50,6 @@ export default function RechtsanwaltApp() {
               </p>
             ))}
           </div>
-          <div className="footer-notice">
-            <p className="payment-notice">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
-                <line x1="1" y1="10" x2="23" y2="10"/>
-              </svg>
-              <span>{rechtsanwaltConfig.notices.payment}</span>
-            </p>
-          </div>
           <p className="copyright">&copy; 2025 <a href="https://zagnex.com" target="_blank" rel="noopener noreferrer">Zagnex</a>. Alle Rechte vorbehalten.</p>
         </div>
       </footer>

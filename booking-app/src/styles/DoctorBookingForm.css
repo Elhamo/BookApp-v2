@@ -1205,6 +1205,7 @@
 
 .rechtsanwalt-app .booking-steps {
   background: #c5c3c0;
+  gap: 1rem;
 }
 
 .rechtsanwalt-app .step {

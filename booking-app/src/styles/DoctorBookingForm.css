@@ -1204,17 +1204,26 @@
    ============================================ */
 
 .rechtsanwalt-app .booking-steps {
-  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  background: #c5c3c0;
+}
+
+.rechtsanwalt-app .step {
+  background: transparent;
+}
+
+.rechtsanwalt-app .step.active {
+  background: #F0FFF0;
+  border-radius: 8px;
 }
 
 .rechtsanwalt-app .step-number {
   background: white;
-  color: #16a34a;
+  color: #6b6966;
 }
 
 .rechtsanwalt-app .step.active .step-number {
-  background: white;
-  color: #15803d;
+  background: #22c55e;
+  color: white;
   box-shadow: 0 4px 15px rgba(22, 163, 74, 0.3);
 }
 

@@ -303,6 +303,16 @@ export const rechtsanwaltConfig = {
     patientFields: ['visitReason', 'urgency']
   },
 
+  // Custom Labels für Rechtsanwalt
+  formLabels: {
+    sectionTitle: 'Anliegen & Anmerkungen',
+    visitReason: 'Anliegen',
+    symptoms: 'Sachverhalt',
+    symptomsPlaceholder: 'Beschreiben Sie kurz Ihre rechtliche Angelegenheit...',
+    notes: 'Weitere Anmerkungen',
+    notesPlaceholder: 'Sonstige Hinweise für die Kanzlei...'
+  },
+
   // Hinweise
   notices: {
     general: 'Bitte bringen Sie alle relevanten Unterlagen zum Termin mit.',

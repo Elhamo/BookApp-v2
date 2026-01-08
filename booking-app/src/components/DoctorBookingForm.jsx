@@ -770,12 +770,12 @@ export default function DoctorBookingForm({ config }) {
                   <line x1="16" y1="13" x2="8" y2="13"/>
                   <line x1="16" y1="17" x2="8" y2="17"/>
                 </svg>
-                Anliegen & Anmerkungen
+                {praxisConfig.formLabels?.sectionTitle || 'Anliegen & Anmerkungen'}
               </h3>
 
               <div className="form-row">
                 <div className="form-group">
-                  <label>Besuchsgrund</label>
+                  <label>{praxisConfig.formLabels?.visitReason || 'Besuchsgrund'}</label>
                   <select
                     value={patientData.visitReason}
                     onChange={(e) => setPatientData({...patientData, visitReason: e.target.value})}
@@ -805,21 +805,21 @@ export default function DoctorBookingForm({ config }) {
               </div>
 
               <div className="form-group">
-                <label>Symptome / Beschwerden</label>
+                <label>{praxisConfig.formLabels?.symptoms || 'Symptome / Beschwerden'}</label>
                 <textarea
                   value={patientData.symptoms}
                   onChange={(e) => setPatientData({...patientData, symptoms: e.target.value})}
-                  placeholder="Beschreiben Sie kurz Ihre Symptome oder Beschwerden..."
+                  placeholder={praxisConfig.formLabels?.symptomsPlaceholder || 'Beschreiben Sie kurz Ihre Symptome oder Beschwerden...'}
                   rows={3}
                 />
               </div>
 
               <div className="form-group">
-                <label>Weitere Anmerkungen</label>
+                <label>{praxisConfig.formLabels?.notes || 'Weitere Anmerkungen'}</label>
                 <textarea
                   value={patientData.notes}
                   onChange={(e) => setPatientData({...patientData, notes: e.target.value})}
-                  placeholder="Sonstige Hinweise für die Praxis..."
+                  placeholder={praxisConfig.formLabels?.notesPlaceholder || 'Sonstige Hinweise für die Praxis...'}
                   rows={2}
                 />
               </div>

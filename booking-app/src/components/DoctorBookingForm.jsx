@@ -266,7 +266,7 @@ export default function DoctorBookingForm({ config }) {
 
           <div className="success-details">
             <div className="detail-row">
-              <span className="label">Arzt/Ärztin:</span>
+              <span className="label">{praxisConfig.professionalTitle || 'Arzt/Ärztin'}:</span>
               <span className="value">{selectedDoctor.name}</span>
             </div>
             <div className="detail-row">
@@ -390,7 +390,7 @@ export default function DoctorBookingForm({ config }) {
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
                     <circle cx="12" cy="7" r="4"/>
                   </svg>
-                  Wählen Sie Ihren Arzt / Ihre Ärztin
+                  {praxisConfig.professionalTitleLong ? `Wählen Sie ${praxisConfig.professionalTitleLong}` : 'Wählen Sie Ihren Arzt / Ihre Ärztin'}
                 </h3>
                 <div className="doctors-grid">
                   {praxisConfig.doctors.map(doctor => (
@@ -436,7 +436,7 @@ export default function DoctorBookingForm({ config }) {
               /* Single Doctor Info Card */
               <div className="form-section single-doctor-info">
                 <h3 className="section-title no-icon">
-                  Ihr Arzt / Ihre Ärztin
+                  {praxisConfig.professionalTitleLong || 'Ihr Arzt / Ihre Ärztin'}
                 </h3>
                 <div className="doctor-info-card" style={{ '--doctor-color': selectedDoctor?.color }}>
                   <div className="doctor-avatar large">
@@ -1021,7 +1021,7 @@ export default function DoctorBookingForm({ config }) {
                 </h3>
                 <div className="summary-card">
                   <div className="summary-row">
-                    <span className="label">Arzt/Ärztin</span>
+                    <span className="label">{praxisConfig.professionalTitle || 'Arzt/Ärztin'}</span>
                     <span className="value">{selectedDoctor?.name}</span>
                   </div>
                   <div className="summary-row">

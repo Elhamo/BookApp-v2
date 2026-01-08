@@ -5,6 +5,8 @@ export const rechtsanwaltConfig = {
   id: 'rechtsanwalt-siudak-2025',
   name: 'Mag. Dr. Sebastian Siudak',
   description: 'Rechtsanwalt',
+  professionalTitle: 'Anwalt',
+  professionalTitleLong: 'Ihr Anwalt',
   phone: '+43 1 234 5678',
   email: 'kanzlei@ra-siudak.at',
 

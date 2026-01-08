@@ -1210,9 +1210,10 @@
     top: 0;
     z-index: 100;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    padding: 12px 15px;
+    gap: 12px;
+    padding: 10px 15px;
     margin: 0;
     margin-bottom: 1.5rem;
     border-radius: 0;
@@ -1235,12 +1236,30 @@
   }
 
   .step-number {
-    width: 32px !important;
-    height: 32px !important;
-    min-width: 32px !important;
-    max-width: 32px !important;
-    font-size: 0.85rem !important;
-    border-radius: 50% !important;
+    width: auto !important;
+    height: auto !important;
+    min-width: auto !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    font-size: 1.1rem !important;
+    font-weight: 700 !important;
+    color: rgba(255, 255, 255, 0.5) !important;
+    padding: 4px 8px !important;
+  }
+
+  .step.active .step-number {
+    color: white !important;
+    font-size: 1.3rem !important;
+  }
+
+  .step.completed .step-number {
+    color: rgba(255, 255, 255, 0.8) !important;
+    background: transparent !important;
+  }
+
+  .step.completed .step-number svg {
+    width: 16px;
+    height: 16px;
   }
 
   .doctor-booking-form {

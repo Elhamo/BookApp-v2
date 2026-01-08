@@ -1352,6 +1352,12 @@
   transform: translateY(-2px);
 }
 
+.rechtsanwalt-app .consultation-types .consultation-card.selected {
+  background: #c5c3c0 !important;
+  border-color: #c5c3c0 !important;
+  box-shadow: 0 4px 15px rgba(197, 195, 192, 0.3);
+}
+
 .rechtsanwalt-app .doctor-info-card {
   border-color: #c5c3c0;
 }
